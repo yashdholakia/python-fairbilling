@@ -92,12 +92,15 @@ def main_executor(file_name):
         if len(session_details) > 1:
             for idx,session_record in enumerate(session_details[:]):
                 if session_record["session"] == "Start" and (idx) <= len(session_details):
-                    adder = (next(end for end in session_details if end["session"] == "End"))
-                    seconds += calculate_diff_seconds(session_record["time_stamp"],adder["time_stamp"])
-                    user_sessions.update({user : {"count" : session_counter, "seconds" : seconds}})
-                    session_details.remove(adder)
-                    session_details.remove(session_record)
-                    session_counter+=1
+                    try:
+                        adder = (next(end for end in session_details if end["session"] == "End"))
+                        seconds += calculate_diff_seconds(session_record["time_stamp"],adder["time_stamp"])
+                        user_sessions.update({user : {"count" : session_counter, "seconds" : seconds}})
+                        session_details.remove(adder)
+                        session_details.remove(session_record)
+                        session_counter+=1
+                    except Exception as e: 
+                        continue
 
         for idx,session_record in enumerate(session_details):
             session_counter = user_sessions[user]["count"]
