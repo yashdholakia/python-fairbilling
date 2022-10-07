@@ -25,7 +25,6 @@ not span midnight).
 
 ### Usage 
 
-1. If using node installation, after completing it, navigate to root directory of code and type 
 
     ```python billing.py <inputfile> 
     ``` 
