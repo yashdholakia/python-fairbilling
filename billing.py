@@ -3,11 +3,12 @@ from datetime import datetime
 
 user_session_dict = {}
 user_session_dict_with_time = {}
-
 master_record = {}
 
 final_session_obj = {}
 line_count = 0
+user_sessions = {}
+
 
 def process_file(file_path):
     line_index = 1
@@ -64,26 +65,18 @@ def validate_line(line):
     return True
 
 
-
 def calculate_diff_seconds(start_time, end_time):
-    from datetime import datetime
     format = "%H:%M:%S"
     difference = datetime.strptime(end_time, format) - datetime.strptime(start_time, format)
     return int(difference.total_seconds())
 
 
-user_sessions = {
-   
-}
-
-
-if __name__ == "__main__":
-    process_file("input.txt")
+def main_executor(file_name):
+    
+    process_file(file_name)
     if len(user_session_dict) == 0:
-        print("NO data available")
+        print("No data available")
         sys.exit(-1)
-
-    session_summary = {}
 
     first_most_record = master_record[1]["time_stamp"]
     last_most_record = master_record[max(master_record.keys())]["time_stamp"]
@@ -93,13 +86,11 @@ if __name__ == "__main__":
         session_details = elem[1]
         session_counter = 1
         seconds = 0
-        print("SESSION DETAILS I MEAN", session_details)
         if user not in user_sessions:
             user_sessions.update({ user : { "count" : 0, "seconds" : 0}})
 
         if len(session_details) > 1:
             for idx,session_record in enumerate(session_details[:]):
-                print("processing", session_record, user)
                 if session_record["session"] == "Start" and (idx) <= len(session_details):
                     adder = (next(end for end in session_details if end["session"] == "End"))
                     seconds += calculate_diff_seconds(session_record["time_stamp"],adder["time_stamp"])
@@ -118,7 +109,6 @@ if __name__ == "__main__":
                 user_sessions.update({user : {"count" : session_counter, "seconds" : seconds}})
                 
             else:
-                print("IN ELSE PART FOR USER", user)
                 user_sessions[user]["count"] += 1
                 user_sessions[user]["seconds"] += calculate_diff_seconds(session_record["time_stamp"],last_most_record)
                     
@@ -126,3 +116,15 @@ if __name__ == "__main__":
     for session_info in user_sessions.items():
         print("{} {} {}".format(session_info[0], session_info[1]["count"], session_info[1]["seconds"] ))
 
+if __name__ == "__main__":
+    #from CLI parameter
+    
+    parameters = sys.argv
+    if len(parameters) != 2:
+        print("Invalid parameters, \n Usage : python3 billing.py <filename>")
+        sys.exit(-1)
+    
+    file_name = parameters[1]
+    main_executor(file_name)
+
+   

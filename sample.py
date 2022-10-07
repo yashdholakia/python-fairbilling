@@ -111,3 +111,6 @@ for idx,alice_record in enumerate(ALICE_RECORDS):
 
 
 # print(user_sessions)
+import sys
+FILE_NAME = sys.argv[1]
+print(FILE_NAME)
