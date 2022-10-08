@@ -25,15 +25,13 @@ not span midnight).
 
 ### Usage 
 
-    ```python billing.py <inputfile> 
-    ``` 
+    ```python billing.py <inputfile> ``` 
 
-    If provided valid input file with required format, it shall print the output similar as described in [Requirement Specification](#Requirement Specification)
+  If provided valid input file with required format, it shall print the output similar as described in [Requirement Specification](#Requirement Specification)
 
-    There are 11 input files which covers different test scenarios like, Multiple Start and End, Only Start, Only End, Blank files, invalid entries etc
+  There are 11 input files which covers different test scenarios like, Multiple Start and End, Only Start, Only End, Blank files, invalid entries etc
 
-
-#### Requirement Specification 
+### Requirement Specification 
 
 You work for a hosted application provider which charges for the use of its application by the duration of sessions. There is a charge
 per second of usage. The usage data comes from a log file that lists the time at which a session starts or stops (in the format
