@@ -25,11 +25,12 @@ not span midnight).
 
 ### Usage 
 
-
     ```python billing.py <inputfile> 
     ``` 
 
     If provided valid input file with required format, it shall print the output similar as described in [Requirement Specification](#Requirement Specification)
+
+    There are 11 input files which covers different test scenarios like, Multiple Start and End, Only Start, Only End, Blank files, invalid entries etc
 
 
 #### Requirement Specification 
@@ -64,15 +65,19 @@ duration of their sessions in seconds that is consistent with the data in the fi
 have more than one session active concurrently. Where there is an “End” with no possible matching start, the start time should be
 assumed to be the earliest time of any record in the file. Where there is a “Start” with no possible matching “End”, the end time
 should be assumed to be the latest time of any record in the file. So, for a file containing only these records:
+
   ```14:02:03 ALICE99 Start 
   14:02:05 CHARLIE End 
-  14:02:34 ALICE99 End```
+  14:02:34 ALICE99 End
+  ```
+  
 the start time for CHARLIE's record should be assumed to be the earliest time in the file, i.e. 14:02:03. Similarly for the first example
 above:
  ``` ... 
   14:04:05 ALICE99 End 
   14:04:23 ALICE99 End 
-  14:04:41 CHARLIE Start```
+  14:04:41 CHARLIE Star
+```
 the last record is a “Start” and there are no later records at all so CHARLIE's last session will be considered to have finished at
 14:04:41, i.e. it will be 0 seconds in duration.
 Putting this all together, the results for the original data shown above would be as follows (name, sessions and total time):
