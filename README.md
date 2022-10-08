@@ -13,25 +13,24 @@ This is a Fair Billing Demo application which accepts session log file as an inp
 1. Log file data in the input will be correctly ordered chronologically
 2. All records in the file will be from within a single day (i.e. they will
 not span midnight).
-3. AS given in the example description , following 
+3. As given in the example description , following 
 
 ### Built with
  * Python 3.x.x
 
-#### Prerequisite
+### Prerequisite
  * Python 3.x.x
  * Bash Terminal(Linux) or Cmd (Windows)
  
+#### Usage 
 
-### Usage 
-
-    ```python billing.py <inputfile> ``` 
+  ``` python billing.py <inputfile> ``` 
 
   If provided valid input file with required format, it shall print the output similar as described in [Requirement Specification](#Requirement Specification)
 
   There are 11 input files which covers different test scenarios like, Multiple Start and End, Only Start, Only End, Blank files, invalid entries etc
 
-### Requirement Specification 
+#### Requirement Specification
 
 You work for a hosted application provider which charges for the use of its application by the duration of sessions. There is a charge
 per second of usage. The usage data comes from a log file that lists the time at which a session starts or stops (in the format
